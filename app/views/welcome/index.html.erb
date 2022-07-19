@@ -1,0 +1,9 @@
+<% provide :page_title, 'Welcome' %>
+<% currently_at 'Welcome' %>
+<div class="text-center mt-5">
+  <h1 class="display-1  mb-5">Welcome to <span class="text-primary">Github server</span></h1>
+  <h2>
+    <%= link_to "Find", login_path, class: 'btn btn-primary btn-lg', :method => :get %>
+    your Github repositories.
+  </h2>
+</div>
