@@ -5,20 +5,20 @@ default: &default
 development:
    adapter: postgresql
    encoding: unicode
-   database: wallet_development
+   database: development
    username: rubyuser
    password: 1234
 
 test:
    adapter: postgresql
    encoding: unicode
-   database: wallet_test
+   database: test
    username: rubyuser
    password: 1234
  
 production:
    adapter: postgresql
    encoding: unicode
-   database: wallet_production
+   database: production
    username: rubyuser
    password: 1234

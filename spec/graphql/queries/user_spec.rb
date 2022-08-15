@@ -2,22 +2,24 @@ require "rails_helper"
 
 RSpec.describe "query user" do
   it "returs info about user and his repos" do
-    query = <<-GQL
-    query {
-      user(login: "doroshenkoihor") {
-        login
-        name
-        repos {
+    VCR.use_cassette("user") do
+      query = <<-GQL
+      query {
+        user(login: "doroshenkoihor") {
+          login
           name
+          repos {
+            name
+          }
         }
       }
-    }
-    GQL
+      GQL
 
-    results = GithubSchema.execute(query)
+      results = GithubSchema.execute(query)
 
-    expect(results.dig('data', 'user', 'login')).to eq('doroshenkoihor')
-    expect(results.dig('data', 'user', 'name')).to eq('doroshenkoihor')
-    expect(results.dig('data', 'user', 'repos')).to eq([{ "name"=>"github" }, { "name"=>"Library" }, { "name"=>"wallet" }])
+      expect(results.dig('data', 'user', 'login')).to eq('doroshenkoihor')
+      expect(results.dig('data', 'user', 'name')).to eq('doroshenkoihor')
+      expect(results.dig('data', 'user', 'repos')).to eq([{ "name"=>"github" }, { "name"=>"Library" }, { "name"=>"wallet" }])
+    end
   end
 end
