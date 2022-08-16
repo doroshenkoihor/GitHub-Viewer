@@ -1,0 +1,4 @@
+tmp/
+public/packs/
+public/packs-test/
+public/assets/graphiql/rails
