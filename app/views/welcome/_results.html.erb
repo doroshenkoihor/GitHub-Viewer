@@ -1,17 +1,25 @@
 <div class="mt-5">
   <% user = @result.dig('data', 'user') %>
   <% if user %>
-    <h1 class="mb-4"><%= user['name'] %> repos:</h1>
-    <div class="row row-cols-1 row-cols-md-3 g-5 mb-5">
-      <% user['repos'].each do |repo| %>
-        <div class="col">
-          <div class="card" style="width: 300px;">
-            <h2 class="mb-4 card-header"><%= repo['name'] %></h2>
+    <% repos = user['repos'] %>
+    <% if repos.present? %>
+      <h1 class="mb-4"><%= user['name'] %> repos:</h1>
+      <div class="row row-cols-1 row-cols-md-4 g-5 mb-5">
+        <% repos.each do |repo| %>
+          <div class="col">
+            <div class="card" style="width: 300px;">
+              <div class="card-body">
+                <h2 class="mb-4 card-title"><%= repo['name'] %></h2>
+                <a target="_blank" class="btn btn-primary" href=<%= repo['svnUrl'] %>>View on Github</a>
+              </div>
+            </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% else %>
+      <h2 class="text-muted">User <span class="text-dark"><%= user['name'] %></span> has no repos yet :(</h2>
+    <% end %>
   <% else %>
-    <h1>No Results Fonud</h1>
+    <h3 class="text-muted">Oops! User not found or something went wrong. Please, enter another login or try again later.</h3>
   <% end %>
 </div>
