@@ -4,10 +4,10 @@
     <% repos = user['repos'] %>
     <% if repos.present? %>
       <h1 class="mb-4"><%= user['name'] %> repos:</h1>
-      <div class="row row-cols-1 row-cols-md-4 g-5 mb-5">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-sm-1 row-cols-lg-3 row-cols-xl-4 g-5 mb-5">
         <% repos.each do |repo| %>
           <div class="col">
-            <div class="card" style="width: 300px;">
+            <div class="card" style="min-width: 300px;">
               <div class="card-body">
                 <h2 class="mb-4 card-title"><%= repo['name'] %></h2>
                 <a target="_blank" class="btn btn-primary" href=<%= repo['svnUrl'] %>>View on Github</a>
